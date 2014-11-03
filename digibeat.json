@@ -1,0 +1,22 @@
+{
+	"mongodb":{
+		"host":"127.0.0.1",
+		"port":"27017",
+		"username":"",
+		"password":""
+	},
+	"mysql":{
+		"host":"localhost",
+		"port":"3306",
+		"username":"root",
+		"password":"c1mah1"
+	},
+	"upload":{
+		"folder":"/home/dhani/upload/",
+		"folder_program":"/home/dhani/Documents/",
+		"folder_download":"/home/dhani/upload/tempdownload",
+		"folder_src_audio":"/home/dhani/upload/src_audio",
+		"folder_src_wav":"/home/dhani/upload/src_audio/wav",
+		"folder_src_mp3":"/home/dhani/upload/src_audio/mp3"
+	}
+}
