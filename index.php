@@ -7,6 +7,7 @@ error_reporting(-1);
 define('DOCROOT', realpath(dirname(__FILE__)).DIRECTORY_SEPARATOR);
 define('DOCVIEW', DOCROOT."view".DIRECTORY_SEPARATOR);
 define('BASE_URL', "https://".$_SERVER['HTTP_HOST']."/");
+require_once (DOCROOT."lib/db/MysqliDb.php");
 //include_once(DOCROOT."lib/chilkat/chilkat_9_5_0.php");
 
 function __autoload($class_name) {
