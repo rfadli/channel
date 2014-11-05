@@ -160,7 +160,7 @@ class streamingname_controller extends controller
 			$deskripsi = $sdk['deskripsi'];
 		}
 		
-		$link = $this->getView(DOCVIEW. '/streamingname/edit?id='.$id);
+		$link = '/streamingname/edit?id='.$id;
 		
 		$p = array(
 			'name' => $name,

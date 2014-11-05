@@ -153,7 +153,7 @@ class streaming_controller extends controller
 			$deskripsi = $sdk['deskripsi'];
 		}
 		
-		$link = $this->getView(DOCVIEW. '/streaming/add?id='.$id);
+		$link = '/streaming/add?id='.$id;
 		
 		$p = array(
 			'name' => $name,
