@@ -1,5 +1,5 @@
 <?php
-
+/*
 class Db{
 	private static $dbs;
 	
