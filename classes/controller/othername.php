@@ -1,21 +1,24 @@
 <?php
 
-class streaming_controller extends controller
+class othername_controller extends controller
 {
 	public function index()
 	{
+		$idother = $_GET['idother'];
 		$db = Db::init();
-		$str = $db->channel;
+		$stq = $db->othername;
 		
 		$p = array(
-			"userid" => $_SESSION['userid']
+			"other_id" => $idother
 		);
-		$data = $str->find($p);
+		$data = $stq->find($p);
 		
 		$p = array(
-			'data' => $data
+			'data' => $data,
+			'idother' => $idother
 		);
-		$content = $this->getView(DOCVIEW.'streaming/index.php', $p);
+		$content = $this->getView(DOCVIEW.'othername/index.php', $p);
+		
 		$p = array(
 			'content' => $content
 		);
@@ -25,9 +28,10 @@ class streaming_controller extends controller
 	
 	public function add()
 	{
+		$id = $_GET['id'];
 		$db = Db::init();
-		$str = $db->channel;
-		$data = $str->find();
+		$stq = $db->othername;
+		$data = $stq->find();
 		
 		if(!empty($_POST))
 		{
@@ -53,16 +57,17 @@ class streaming_controller extends controller
 			if($validator->isValid())
 			{
 				$db = Db::init();
-				$str = $db->channel;
+				$stq = $db->othername;
 				$data = array(
 					'name' => $name,
 					'status' => $status,
 					'deskripsi' => $deskripsi,
 					'time_created' => time(),
-					'userid' => $_SESSION['userid'],  
+					'userid' => $_SESSION['userid'], 
+					'other_id' => trim($id) 
 				);
-				$str->insert($data);
-				header("Location: ".'/streaming/index/');
+				$stq->insert($data);
+				header("Location: ".'/othername/index?idother='.$id);
 				return;
 			}
 			else
@@ -77,17 +82,17 @@ class streaming_controller extends controller
 			$deskripsi = '';
 		}
 		
-		$link = '/streaming/add';
+		$link = '/othername/add?id='.$id;
 		
 		$p = array(
 			'name' => $name,
 			'status' => $status,
 			'deskripsi' => $deskripsi,
 			'link' => $link,
-			'data' => $data
+			'data' => $data,
 		);
 		
-		$content = $this->getView(DOCVIEW.'streaming/add.php', $p);
+		$content = $this->getView(DOCVIEW.'othername/add.php', $p);
 		
 		$p = array(
 			'content' => $content
@@ -97,12 +102,12 @@ class streaming_controller extends controller
 		echo $view;
 	}
 	
-	public function edit ()
+	public function edit()
 	{
 		$id = $_GET['id'];
 		$db = Db::init();
-		$str = $db->channel;
-		$sdk = $str->findOne(array('_id' => new MongoId($id)));
+		$stq = $db->othername;
+		$sdu = $stq->findOne(array('_id' => new MongoId($id)));
 		
 		if(!empty($_POST))
 		{
@@ -113,10 +118,10 @@ class streaming_controller extends controller
 			$status="disable";
 			if(isset($_POST['status']))
 				$status="enable";
-			
+				
 			$deskripsi = '';
 			if(isset($_POST['deskripsi']));
-			$deskripsi = trim($_POST['deskripsi']);
+			$deskripsi = trim($_POST['deskripsi']);	
 			
 			$validator = new Validator();
 			$validator->addRule('name', array('require'));
@@ -128,17 +133,18 @@ class streaming_controller extends controller
 			if($validator->isValid())
 			{
 				$db = Db::init();
-				$str = $db->channel;
+				$stq = $db->othername;
 				$data = array(
 					'name' => $name,
 					'status' => $status,
 					'deskripsi' => $deskripsi,
 					'time_created' => time(),
-					'userid' => $_SESSION['userid'],  
+					'userid' => $_SESSION['userid'],
+					'other_id' => trim($id)  
 				);
 				$newdata = array('$set' => $data);
-				$str->update(array("_id" => new MongoId($id)), $newdata);
-				header("Location: ".'/streaming/index/');
+				$stq->update(array("_id" => new MongoId($id)), $newdata);
+				header("Location: ".'/othername/index?idother='.$id);
 				return;
 			}
 			else
@@ -148,12 +154,12 @@ class streaming_controller extends controller
 		}
 		else
 		{
-			$name = $sdk['name'];
-			$status = $sdk['status'];
-			$deskripsi = $sdk['deskripsi'];
+			$name = $sdu['name'];
+			$status = $sdu['status'];
+			$deskripsi = $sdu['deskripsi'];
 		}
 		
-		$link = '/streaming/edit?id='.$id;
+		$link = '/othername/edit?id='.$id;
 		
 		$p = array(
 			'name' => $name,
@@ -162,24 +168,23 @@ class streaming_controller extends controller
 			'link' => $link,
 		);
 		
-		$content = $this->getView(DOCVIEW.'streaming/add.php', $p);
+		$content = $this->getView(DOCVIEW.'othername/add.php', $p);
 		
-		$p = array(
+		$a = array(
 			'content' => $content
 		);
 		
-		$view = $this->getView(DOCVIEW.'template/template.php', $p);
+		$view = $this->getView(DOCVIEW.'template/template.php', $a);
 		echo $view;
-		
 	}
 
 	public function delete()
 	{
 		$id = $_GET['id'];
 		$db = Db::init();
-		$str = $db->channel;
+		$stq = $db->othername;
 		
-		$str->remove(array('_id' => new MongoId($id)));
-		header("Location: ".'/streaming/index/');
+		$stq->remove(array('_id' => new MongoId($id)));
+		header("Location: ".'/other/index/');
 	}
 }

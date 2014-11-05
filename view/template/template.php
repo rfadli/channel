@@ -279,8 +279,18 @@
                             </div>
                             <!-- /input-group -->
                         </li>
+                        
                         <li>
-                            <a class="active" href="/"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        	<?php
+                        	if($_SERVER['REQUEST_URI'] == '/')
+							{
+								echo '<a class="active" href="/"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>';
+							}
+							else
+							{
+								echo '<a href="/"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>';
+							}
+                        	?>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> System<span class="fa arrow"></span></a>
@@ -294,37 +304,155 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-                        <li>
-                        	<a href="/streaming/index"><i class="fa fa-bar-chart-o fa-fw"></i> Streaming<span class="fa arrow"></span></a>
-                        	<ul class="nav nav-second-level">
-                        		<li>
-                        			<a href="/streaming/index">> Index</a>
-                        		</li>
-                        	</ul>
+                        
+		                    <?php
+							if(($_SERVER['REQUEST_URI'] == '/streaming/index') || (substr($_SERVER['REQUEST_URI'],1,14 ) == 'streamingname/' ))
+							{
+								echo '<li class="active">';
+							}
+							else
+							{
+								echo '<li>';
+							}
+		                    ?>   	
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Streaming<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-	                           <li>
-	                    		<?php
+                                <li>
+                                	<?php
+                                	if($_SERVER['REQUEST_URI'] == '/streaming/index')
+									{
+										echo '<a class="active" href="/streaming/index"> Index</a>';
+									}
+									else
+									{
+										echo '<a href="/streaming/index"> Index</a>';
+									}
+                                	?>
+                                </li>
+                                
+                                <li>
+                                    <?php
 	                    			$db = Db::init();
 									$str = $db->channel;
 									$p = array(
 										"userid" => $_SESSION['userid']
 									);
 									$data = $str->find($p);
+									
 									foreach ($data as $nav) 
 									{
-										echo '<a href="/streamingname/index?idchanel='.$nav['_id'].'" class="fa fa-fw">'.$nav['name'].'</a>';
-										
+										if($_SERVER['REQUEST_URI'] == '/streamingname/index?idchanel='.$nav['_id'])
+										{
+											echo '<a class="active" href="/streamingname/index?idchanel='.$nav['_id'].'" class="fa fa-fw">'.$nav['name'].'</a>';
+										}
+										else
+										{
+											echo '<a href="/streamingname/index?idchanel='.$nav['_id'].'" class="fa fa-fw">'.$nav['name'].'</a>';
+										}
 									}
 	                    		?>
-	                            </li>
-                            </ul>	
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
                         </li>
-                        <li>
-                            <a href="/vod/index"><i class="fa fa-edit fa-fw"></i> VOD</a>
+                            <?php
+                        	if(($_SERVER['REQUEST_URI'] == '/vod/index' ) || (substr($_SERVER['REQUEST_URI'],1,8 ) == 'vodname/' ))
+							{
+								echo '<li class="active">';
+							}
+							else
+							{
+								echo '<li>';
+							}
+		                    ?>   	
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> VOD<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                	<?php
+                                	if($_SERVER['REQUEST_URI'] == '/vod/index')
+									{
+										echo '<a class="active" href="/vod/index"> Index</a>';
+									}
+									else
+									{
+										echo '<a href="/vod/index"> Index</a>';
+									}
+                                	?>
+                                </li>
+                                
+                                <li>
+                                   <?php
+		                    			$db = Db::init();
+										$stt = $db->vod;
+										$p = array(
+											"userid" => $_SESSION['userid']
+										);
+										$data = $stt->find($p);
+										
+										foreach ($data as $nav) 
+										{
+											if($_SERVER['REQUEST_URI'] == '/vodname/index?idvod='.$nav['_id'])
+											{
+												echo '<a class="active" href="/vodname/index?idvod='.$nav['_id'].'" class="fa fa-fw">'.$nav['name'].'</a>';
+											}
+											else
+											{
+												echo '<a href="/vodname/index?idvod='.$nav['_id'].'" class="fa fa-fw">'.$nav['name'].'</a>';
+											}
+										}
+		                    		?>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
                         </li>
-                        <li>
-                            <a href="/other/index"><i class="fa fa-edit fa-fw"></i> Other</a>
-                        </li>
+                        
+                        <?php
+                        if(($_SERVER['REQUEST_URI'] == '/other/index') || (substr($_SERVER['REQUEST_URI'],1,10 ) == 'othername/' ))
+						{
+							echo '<li class="active">';
+						}
+						else
+						{
+							echo '<li>';
+						}
+                        ?>
+                        <a href="#"><i class="fa fa-wrench fa-fw"></i> Other<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                	<?php
+                                	if($_SERVER['REQUEST_URI'] == '/other/index')
+									{
+										echo '<a class="active" href="/other/index"> Index</a>';
+									}
+									else
+									{
+										echo '<a href="/other/index"> Index</a>';
+									}
+                                	?>
+                                </li>
+                                <li>
+                                	<?php
+	                    			$db = Db::init();
+									$stg = $db->other;
+									$p = array(
+										"userid" => $_SESSION['userid']
+									);
+									$data = $stg->find($p);
+									foreach ($data as $nav) 
+									{
+										if($_SERVER['REQUEST_URI'] == '/othername/index?idother='.$nav['_id'])
+										{
+											echo '<a class="active" href="/othername/index?idother='.$nav['_id'].'" class="fa fa-fw">'.$nav['name'].'</a>';
+										}
+										else
+										{
+											echo '<a href="/othername/index?idother='.$nav['_id'].'" class="fa fa-fw">'.$nav['name'].'</a>';
+										}
+										
+									}
+		                    		?>
+                                </li>
+                          </li>
                
                     </ul>
                 </div>

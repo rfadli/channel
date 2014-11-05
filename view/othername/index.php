@@ -1,30 +1,28 @@
 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">VOD Channel</h1>
+                	<?php
+                	$db = Db::init();
+					$sts = $db->other;
+					$p = array(
+						"_id" => new MongoId($idother)
+					);
+					$acd = $sts->findOne($p);
+					echo '<h1 class="page-header">Other channel '.$acd['name'].'</h1>';
+					
+                	?>
+                   
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-            
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Area Chart Example
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <div id="morris-area-chart"></div>
-                </div>
-                <!-- /.panel-body -->
-            </div>
-            
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             DataTables Advanced Tables
                         </div>
-                        <a href="/vod/add" class="btn btn-default" type="button">add</a>
+                        <a href="/othername/add?id=<?php echo $idother; ?>" class="btn btn-default" type="button">add</a>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -32,7 +30,7 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>VOD</th>
+                                            <th>Other Name</th>
                                             <th>Status</th>
                                             <th>Created Time</th>
                                             <th></th>
@@ -41,16 +39,16 @@
                                     <tbody>
                                     	<?php
                                     	$no = 1;
-                                    	foreach($data as $dk)
+                                    	foreach($data as $dat)
                                     	{
                                     		echo '<tr>';
 											echo '<td>'.$no.'</td>';
-											echo '<td>'.$dk['name'].'</td>';
-											echo '<td>'.$dk['status'].'</td>';
-											echo '<td>'.date('d/m/Y', $dk['time_created']).'</td>';
+											echo '<td>'.$dat['name'].'</td>';
+											echo '<td>'.$dat['status'].'</td>';
+											echo '<td>'.date('d/m/Y', $dat['time_created']).'</td>';
 											echo '<td>'.'<center>';
-											echo '<a href="/vod/edit?id='.$dk['_id'].'" class="fa fa-fw fa-pencil"></a>&nbsp';
-											echo '<a href="/vod/delete?id='.$dk['_id'].'" onclick="return confirm(\' Anda Yakin?\')" class="fa fa-fw fa-trash-o"></a>';
+											echo '<a href="/othername/edit?id='.$dat['_id'].'" class="fa fa-fw fa-pencil"></a>&nbsp';
+											echo '<a href="/othername/delete?id='.$dat['_id'].'" onclick="return confirm(\' Anda Yakin?\')" class="fa fa-fw fa-trash-o"></a>';
 											echo '</center>'.'</td>';
 											echo '</tr>';
 											$no++;
