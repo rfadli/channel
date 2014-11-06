@@ -60,8 +60,8 @@
 										    'name' => $data['name']
 										));
 										$no=1;
-										echo 'response : ' .$curl->response;
-										print_r($curl->response);
+										//echo 'response : ' .$curl->response;
+										//print_r($curl->response);
 										foreach ($curl->response->result as $dt) 
 										{
 											echo '<tr>';
