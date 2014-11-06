@@ -79,12 +79,14 @@ class vod_controller extends controller
 				$sql->insert('users', $data_sql);
 				
 				$curl = new Curl();
-				$curl->get('http://deboxs.com/api/clientdata/createfolder/', array(
+				$curl->get('http://deboxs.com/api/clientdata/createfolder', array(
 				    'userid' => $_SESSION['userid'],
 				    'typename' => 'vod',
 				    'name' => $name
 				));
-				//echo $curl->response;
+				var_dump($curl->response);
+				print_r($curl->response);
+				die;
 				
 				header("Location: ".'/vod/index/');
 				return;
