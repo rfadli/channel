@@ -54,7 +54,7 @@
                                     <tbody>
                                     	<?php
 										$curl = new Curl();
-										$curl->get('http://deboxs.com/api/clientdata/listfiles', array(
+										$curl->get('http://www.deboxs.com/api/clientdata/listfiles', array(
 										    'userid' => $_SESSION['userid'],
 										    'typename' => 'vod',
 										    'name' => $data['name']
