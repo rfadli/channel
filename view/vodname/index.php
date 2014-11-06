@@ -62,7 +62,7 @@
 										    'name' => $data['name']
 										));
 										$no=1;
-										foreach ($curl->response as $dt) 
+										foreach ($curl->response->result as $dt) 
 										{
 											echo '<tr>';
 											echo '<td>'.$no.'</td>';
