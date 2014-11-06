@@ -71,7 +71,7 @@ class vod_controller extends controller
 				$data_sql = array(
 					'user' => 'vod-'.$name,
 					'userid' => $_SESSION['userid'],
-					'password' => '123456789', //
+					'password' => md5('123456789'), //
 					'host' => 'client.debox.com',
 					'Dir' => '/var/www/program/client-data/vod/'.$name,
 					'mongoid' => trim($data['_id'])
