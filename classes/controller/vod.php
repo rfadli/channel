@@ -72,7 +72,7 @@ class vod_controller extends controller
 					'user' => 'vod-'.$name,
 					'userid' => $_SESSION['userid'],
 					'password' => md5('123456789'), //
-					'host' => 'client.debox.com',
+					'host' => 'deboxs.com',
 					'Dir' => '/var/www/program/client-data/'.$_SESSION['userid'].'/vod/'.$name,
 					'mongoid' => trim($data['_id'])
 				);
