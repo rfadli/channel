@@ -84,9 +84,7 @@ class vod_controller extends controller
 				    'typename' => 'vod',
 				    'name' => $name
 				));
-				var_dump($curl->response);
-				print_r($curl->response);
-				die;
+				
 				
 				header("Location: ".'/vod/index/');
 				return;
