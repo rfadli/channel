@@ -47,9 +47,9 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>VOD Name</th>
-                                            <th>Status</th>
-                                            <th>Created Time</th>
+                                            <th>Name</th>
+                                            <th>type</th>
+                                            <th>Size</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -61,7 +61,20 @@
 										    'typename' => 'vod',
 										    'name' => $data['name']
 										));
-										print_r($curl -> response)
+										$no=1;
+										foreach ($curl->response as $dt) 
+										{
+											echo '<tr>';
+											echo '<td>'.$no.'</td>';
+											echo '<td>'.$dt->name.'</td>';
+											echo '<td>'.$dt->type.'</td>';
+											echo '<td>'.$dt->size.'</td>';
+											echo '<td>'.'</td>';
+											echo '</tr>';
+											$no++;
+										}
+										
+										//print_r($curl -> response)
                                     	
                                     	?>
                                         
