@@ -10,9 +10,7 @@
 					$acb = $str->findOne($p);
 					
 					echo '<h1 class="page-header">VOD Channels '.$acb['name'].'</h1>';
-					
                 	?>
-                   
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -73,9 +71,6 @@
 											echo '</tr>';
 											$no++;
 										}
-										
-										//print_r($curl -> response)
-                                    	
                                     	?>
                                         
                                     </tbody>

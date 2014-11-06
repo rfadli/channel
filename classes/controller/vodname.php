@@ -110,8 +110,6 @@ class vodname_controller extends controller
 		$stk = $db->vodname;
 		$sdd = $stk->findOne(array('_id' => new MongoId($id)));
 		
-		
-		
 		if(!empty($_POST))
 		{
 			$name = '';
