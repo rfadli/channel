@@ -59,7 +59,7 @@
 										$curl->get('http://deboxs.com/api/clientdata/listfiles/', array(
 										    'userid' => $_SESSION['userid'],
 										    'typename' => 'vod',
-										    'name' => $name
+										    'name' => $data['name']
 										));
 										print_r($curl -> response)
                                     	
