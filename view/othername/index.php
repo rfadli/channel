@@ -20,9 +20,10 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            DataTables Advanced Tables
+                            DataTables Advanced Tables</br>
+                            <a href="/othername/add?id=<?php echo $idother; ?>" class="btn btn-default" type="button">Add New</a>
                         </div>
-                        <a href="/othername/add?id=<?php echo $idother; ?>" class="btn btn-default" type="button">add</a>
+                        
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">

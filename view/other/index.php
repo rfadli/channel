@@ -23,8 +23,10 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             DataTables Advanced Tables
+                           </br>
+                        <a href="/other/add" class="btn btn-default" type="button"><span class="glyphicon glyphicon-plus"></span>Add New</a>
                         </div>
-                        <a href="/other/add" class="btn btn-default" type="button">add</a>
+                        
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">

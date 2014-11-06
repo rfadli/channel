@@ -6,12 +6,13 @@ class vodname_controller extends controller
 	{
 		$idvod = $_GET['idvod'];
 		$db = Db::init();
-		$stk = $db->vodname;
+		$stk = $db->vod;
 		
 		$p = array(
-			"vod_id" => $idvod
+			"_id" => new MongoId($idvod)
 		);
-		$data = $stk->find($p);
+		
+		$data = $stk->findOne($p);
 		
 		$p = array(
 			'data' => $data,

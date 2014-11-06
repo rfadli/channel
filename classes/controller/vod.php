@@ -66,6 +66,26 @@ class vod_controller extends controller
 				);
 				
 				$stt->insert($data);
+				
+				$sql = MysqlDB::init();
+				$data_sql = array(
+					'user' => 'vod-'.$name,
+					'userid' => $_SESSION['userid'],
+					'password' => '123456789', //
+					'host' => 'client.debox.com',
+					'Dir' => '/var/www/program/client-data/vod/'.$name,
+					'mongoid' => trim($data['_id'])
+				);
+				$sql->insert('users', $data_sql);
+				
+				$curl = new Curl();
+				$curl->get('http://deboxs.com/api/clientdata/createfolder/', array(
+				    'userid' => $_SESSION['userid'],
+				    'typename' => 'vod',
+				    'name' => $name
+				));
+				//echo $curl->response;
+				
 				header("Location: ".'/vod/index/');
 				return;
 			}

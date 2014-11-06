@@ -25,6 +25,22 @@
                         </div>
                         <a href="/vodname/add?id=<?php echo $idvod; ?>" class="btn btn-default" type="button">add</a>
                         <!-- /.panel-heading -->
+                       </br>
+                        <?php
+						$sql = MysqlDB::init();
+						$sql->where('mongoid', $idvod);
+						$dql = $sql->get('users');
+						
+						foreach ($dql as $rr) 
+						{
+							echo 'user id : '.$rr['userid'].'</br>'.'host : '.$rr['host'].'</br>'.'user : '.$rr['User'];
+						}
+						?>
+						<?php
+						echo '<br />';
+						echo 'nama : '.$data['name'].'<br />';
+						echo 'deskripsi : '.$data['deskripsi'];
+						?>
                         <div class="panel-body">
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -39,21 +55,14 @@
                                     </thead>
                                     <tbody>
                                     	<?php
-                                    	$no = 1;
-                                    	foreach($data as $dat)
-                                    	{
-                                    		echo '<tr>';
-											echo '<td>'.$no.'</td>';
-											echo '<td>'.$dat['name'].'</td>';
-											echo '<td>'.$dat['status'].'</td>';
-											echo '<td>'.date('d/m/Y', $dat['time_created']).'</td>';
-											echo '<td>'.'<center>';
-											echo '<a href="/vodname/edit?id='.$dat['_id'].'" class="fa fa-fw fa-pencil"></a>&nbsp';
-											echo '<a href="/vodname/delete?id='.$dat['_id'].'" onclick="return confirm(\' Anda Yakin?\')" class="fa fa-fw fa-trash-o"></a>';
-											echo '</center>'.'</td>';
-											echo '</tr>';
-											$no++;
-                                    	}
+										$curl = new Curl();
+										$curl->get('http://deboxs.com/api/clientdata/listfiles/', array(
+										    'userid' => $_SESSION['userid'],
+										    'typename' => 'vod',
+										    'name' => $name
+										));
+										print_r($curl -> response)
+                                    	
                                     	?>
                                         
                                     </tbody>

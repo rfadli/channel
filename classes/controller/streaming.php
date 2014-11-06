@@ -100,10 +100,12 @@ class streaming_controller extends controller
 	public function edit ()
 	{
 		$id = $_GET['id'];
+		
 		$db = Db::init();
 		$str = $db->channel;
 		$sdk = $str->findOne(array('_id' => new MongoId($id)));
 		
+				
 		if(!empty($_POST))
 		{
 			$name = '';
@@ -151,7 +153,9 @@ class streaming_controller extends controller
 			$name = $sdk['name'];
 			$status = $sdk['status'];
 			$deskripsi = $sdk['deskripsi'];
+			$password = $mabouts['password'];
 		}
+		
 		
 		$link = '/streaming/edit?id='.$id;
 		
@@ -159,6 +163,7 @@ class streaming_controller extends controller
 			'name' => $name,
 			'status' => $status,
 			'deskripsi' => $deskripsi,
+			'password' => $password,
 			'link' => $link,
 		);
 		
