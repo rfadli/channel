@@ -151,10 +151,10 @@ class othername_controller extends controller
 				
 				$sql = MysqlDB::init();
 				$data_sql = array(
-					'user' => 'vod-'.$name,
+					'user' => 'other-'.$name,
 					'userid' => $_SESSION['userid'],
 					'password' => $password, //
-					'host' => 'www.deboxs.com',
+					'host' => 'main.deboxs.com',
 					'Dir' => '/var/www/program/client-data/'.$_SESSION['userid'].'/other/'.$name,
 					'mongoid' => trim($data['_id'])
 				);
