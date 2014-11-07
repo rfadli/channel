@@ -9,7 +9,7 @@ class vodname_controller extends controller
 		$stk = $db->vod;
 		
 		$p = array(
-			"_id" => $idvod
+			"_id" => new MongoId($idvod)
 		);
 		
 		$data = $stk->findOne($p);
