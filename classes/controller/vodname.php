@@ -204,11 +204,25 @@ class vodname_controller extends controller
 
 	public function delete()
 	{
-		$id = $_GET['id'];
-		$db = Db::init();
-		$stk = $db->vodname;
 		
-		$stk->remove(array('_id' => new MongoId($id)));
-		header("Location: ".'/vod/index/');
+		$idvod = $_GET['idvod'];
+		$db = Db::init();
+		$stk = $db->vod;
+		
+		$p = array(
+			"_id" => new MongoId($idvod)
+		);
+		
+		$data = $stk->findOne($p);
+		
+		$id = $_GET['id'];
+		$curl = new Curl();
+		$curl->get('http://www.deboxs.com/api/clientdata/removefolder', array(
+		    'userid' => $_SESSION['userid'],
+		    'typename' => 'vod',
+		    'name' => $data['name']
+		));
+		//echo 'response : ' .$curl->response;
+		header("Location: ".'/vodname/index?idvod='.$id);
 	}
 }
