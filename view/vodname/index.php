@@ -53,7 +53,7 @@
                                     </thead>
                                     <tbody>
                                     	<?php
-										/*$curl = new Curl();
+										$curl = new Curl();
 										$curl->get('http://www.deboxs.com/api/clientdata/listfiles', array(
 										    'userid' => $_SESSION['userid'],
 										    'typename' => 'vod',
@@ -72,7 +72,7 @@
 											echo '<td>'.'</td>';
 											echo '</tr>';
 											$no++;
-										}*/
+										}
                                     	?>
                                         
                                     </tbody>
