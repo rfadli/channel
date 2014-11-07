@@ -204,20 +204,22 @@ class othername_controller extends controller
 	{
 		$idother = $_GET['idother'];
 		$db = Db::init();
-		$stq = $db->other;
+		$stk = $db->other;
 		
 		$p = array(
 			"_id" => new MongoId($idother)
 		);
-		$data = $stq->findOne($p);
+		
+		$data = $stk->findOne($p);
 		
 		$id = $_GET['id'];
 		$curl = new Curl();
 		$curl->get('http://www.deboxs.com/api/clientdata/removefolder', array(
 		    'userid' => $_SESSION['userid'],
-		    'typename' => 'other',
+		    'typename' => 'others',
 		    'name' => $data['name']
 		));
-		header("Location: ".'/othername/index?idother='.$idother);
+		//echo 'response : ' .$curl->response;
+		header("Location: ".'/othername/index?idother='.$id);
 	}
 }
