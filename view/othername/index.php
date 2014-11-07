@@ -74,7 +74,7 @@
 											echo '<td>'.$dt->name.'</td>';
 											echo '<td>'.$dt->type.'</td>';
 											echo '<td>'.$dt->size.'</td>';
-											echo '<td>'.'<a href="#" link="/othername/delete?idother='.trim($dat['_id']).'" controller="Other" name="'.$dt->name.'" title="Hapus" class="hapus"><i class="fa fa-times"></i></a>'.'</td>';
+											echo '<td>'.'<a href="#" link="/othername/delete?idother='.trim($data['_id']).'" controller="Other" name="'.$dt->name.'" title="Hapus" class="hapus"><i class="fa fa-times"></i></a>'.'</td>';
 											echo '</tr>';
 											$no++;
 										}
