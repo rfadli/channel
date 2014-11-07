@@ -54,7 +54,7 @@ class user_controller extends controller
 						'username' => $_SESSION['userid'],
 						'pass' => $pass,
 					);
-					$stt->update($data);
+					$stt->insert($data);
 					$this->redirect('/');
 					exit;
 				}
