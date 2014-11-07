@@ -218,6 +218,6 @@ class othername_controller extends controller
 		    'typename' => 'other',
 		    'name' => $data['name']
 		));
-		header("Location: ".'/other/index?idother='.$id);
+		header("Location: ".'/other/index?idother='.$idother);
 	}
 }
