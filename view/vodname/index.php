@@ -21,7 +21,7 @@
                         <div class="panel-heading">
                             DataTables Advanced Tables
                         </div>
-                        <a href="/vodname/add?id=<?php echo $idvod; ?>" class="btn btn-default" type="button">add</a>
+                        <a href="/vodname/edit?id=<?php echo $idvod; ?>" class="btn btn-default" type="button">Edit</a>
                         <!-- /.panel-heading -->
                        </br>
                         <?php
@@ -31,7 +31,7 @@
 						
 						foreach ($dql as $rr) 
 						{
-							echo 'user id : '.$rr['userid'].'</br>'.'host : '.$rr['host'].'</br>'.'user : '.$rr['User'];
+							echo 'user id : '.$rr['userid'].'</br>'.'host : '.$rr['host'].'</br>'.'user : '.$rr['User'].'<br />'.'password : '.$rr['Password'];
 						}
 						?>
 						<?php
@@ -53,7 +53,7 @@
                                     </thead>
                                     <tbody>
                                     	<?php
-										$curl = new Curl();
+										/*$curl = new Curl();
 										$curl->get('http://www.deboxs.com/api/clientdata/listfiles', array(
 										    'userid' => $_SESSION['userid'],
 										    'typename' => 'vod',
@@ -72,7 +72,7 @@
 											echo '<td>'.'</td>';
 											echo '</tr>';
 											$no++;
-										}
+										}*/
                                     	?>
                                         
                                     </tbody>

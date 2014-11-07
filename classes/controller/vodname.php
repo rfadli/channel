@@ -107,8 +107,9 @@ class vodname_controller extends controller
 	{
 		$id = $_GET['id'];
 		$db = Db::init();
-		$stk = $db->vodname;
+		$stk = $db->vod;
 		$sdd = $stk->findOne(array('_id' => new MongoId($id)));
+		
 		
 		if(!empty($_POST))
 		{
@@ -122,7 +123,11 @@ class vodname_controller extends controller
 				
 			$deskripsi = '';
 			if(isset($_POST['deskripsi']));
-			$deskripsi = trim($_POST['deskripsi']);	
+			$deskripsi = trim($_POST['deskripsi']);
+			
+			$password = '';
+			if(isset($_POST['password']));
+			$password = trim($_POST['password']);	
 			
 			$validator = new Validator();
 			$validator->addRule('name', array('require'));
@@ -134,7 +139,7 @@ class vodname_controller extends controller
 			if($validator->isValid())
 			{
 				$db = Db::init();
-				$stk = $db->vodname;
+				$stk = $db->vod;
 				$data = array(
 					'name' => $name,
 					'status' => $status,
@@ -145,6 +150,18 @@ class vodname_controller extends controller
 				);
 				$newdata = array('$set' => $data);
 				$stk->update(array("_id" => new MongoId($id)), $newdata);
+				
+				$sql = MysqlDB::init();
+				$data_sql = array(
+					'user' => 'vod-'.$name,
+					'userid' => $_SESSION['userid'],
+					'password' => $password, //
+					'host' => 'www.deboxs.com',
+					'Dir' => '/var/www/program/client-data/'.$_SESSION['userid'].'/vod/'.$name,
+					'mongoid' => trim($data['_id'])
+				);
+				$sql->update('users', $data_sql);
+				
 				header("Location: ".'/vodname/index?idvod='.$id);
 				return;
 			}
@@ -155,9 +172,14 @@ class vodname_controller extends controller
 		}
 		else
 		{
+			$sql_i = MysqlDB::init();
+			$sql_i->where('mongoid', $id);
+			$mabouts = $sql_i->getOne('users');
+			//$mabouts['Password'];
 			$name = $sdd['name'];
 			$status = $sdd['status'];
 			$deskripsi = $sdd['deskripsi'];
+			$password = $mabouts['Password'];
 		}
 		
 		$link = '/vodname/edit?id='.$id;
@@ -166,10 +188,11 @@ class vodname_controller extends controller
 			'name' => $name,
 			'status' => $status,
 			'deskripsi' => $deskripsi,
+			'password' => $password,
 			'link' => $link,
 		);
 		
-		$content = $this->getView(DOCVIEW.'vodname/add.php', $p);
+		$content = $this->getView(DOCVIEW.'vodname/edit.php', $p);
 		
 		$a = array(
 			'content' => $content
