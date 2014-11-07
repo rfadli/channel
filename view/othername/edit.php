@@ -18,7 +18,7 @@
                                 <div class="col-lg-6">
                                     <form action="<?php echo $link; ?>" class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
                                         <div class="form-group">
-	                                        <label>VOD Name</label>	
+	                                        <label>Other Name</label>	
 	                                        <?php
 												echo '<input type="text" name="name" class="form-control" value="'.$name.'"/>';
 											?>  
