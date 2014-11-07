@@ -71,7 +71,7 @@ class other_controller extends controller
 					'userid' => $_SESSION['userid'],
 					'password' => md5('123456789'), //
 					'host' => 'main.deboxs.com',
-					'Dir' => '/var/www/program/client-data/'.$_SESSION['userid'].'/other/'.$name,
+					'Dir' => '/var/www/program/client-data/'.$_SESSION['userid'].'/others/'.$name,
 					'mongoid' => trim($data['_id'])
 				);
 				$sql->insert('users', $data_sql);
