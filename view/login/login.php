@@ -38,6 +38,10 @@
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
+                	<?php
+                		if(alert::count() > 0)
+							echo alert::output();
+                	?>
                     <div class="panel-heading">
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>

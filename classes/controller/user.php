@@ -58,6 +58,11 @@ class user_controller extends controller
 					$this->redirect('/');
 					exit;
 				}
+				else
+				{
+					alert::add("alert-danger", "Silakan Login Kembali.");
+				}
+				
 			}
 			else
 			{
