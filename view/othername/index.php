@@ -61,7 +61,7 @@
                                     	$curl = new Curl();
 										$curl->get('http://www.deboxs.com/api/clientdata/listfiles', array(
 										    'userid' => $_SESSION['userid'],
-										    'typename' => 'other',
+										    'typename' => 'others',
 										    'name' => $data['name']
 										));
 										$no=1;

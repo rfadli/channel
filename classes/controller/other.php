@@ -79,7 +79,7 @@ class other_controller extends controller
 				$curl = new Curl();
 				$curl->get('http://www.deboxs.com/api/clientdata/createfolder', array(
 				    'userid' => $_SESSION['userid'],
-				    'typename' => 'other',
+				    'typename' => 'others',
 				    'name' => $name
 				));
 				
