@@ -48,6 +48,13 @@ class user_controller extends controller
 				{
 					// login berhasil
 					$_SESSION['userid'] = $username;
+					$db = Db::init();
+					$stt = $db->users;
+					$data = array(
+						'username' => $_SESSION['userid'],
+						'pass' => $pass,
+					);
+					$stt->update($data);
 					$this->redirect('/');
 					exit;
 				}

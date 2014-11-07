@@ -155,7 +155,7 @@ class vodname_controller extends controller
 				$data_sql = array(
 					'user' => 'vod-'.$name,
 					'userid' => $_SESSION['userid'],
-					'password' => $password, //
+					'Password' => $password, //
 					'host' => 'www.deboxs.com',
 					'Dir' => '/var/www/program/client-data/'.$_SESSION['userid'].'/vod/'.$name,
 					'mongoid' => trim($data['_id'])
@@ -175,7 +175,7 @@ class vodname_controller extends controller
 			$sql_i = MysqlDB::init();
 			$sql_i->where('mongoid', $id);
 			$mabouts = $sql_i->getOne('users');
-			//$mabouts['Password'];
+			
 			$name = $sdd['name'];
 			$status = $sdd['status'];
 			$deskripsi = $sdd['deskripsi'];

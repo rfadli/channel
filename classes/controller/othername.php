@@ -3,15 +3,15 @@
 class othername_controller extends controller
 {
 	public function index()
-	{
+	{	
 		$idother = $_GET['idother'];
 		$db = Db::init();
-		$stq = $db->othername;
+		$stq = $db->other;
 		
 		$p = array(
-			"other_id" => $idother
+			"_id" => new MongoId($idother)
 		);
-		$data = $stq->find($p);
+		$data = $stq->findOne($p);
 		
 		$p = array(
 			'data' => $data,
@@ -106,7 +106,7 @@ class othername_controller extends controller
 	{
 		$id = $_GET['id'];
 		$db = Db::init();
-		$stq = $db->othername;
+		$stq = $db->other;
 		$sdu = $stq->findOne(array('_id' => new MongoId($id)));
 		
 		if(!empty($_POST))
@@ -122,6 +122,10 @@ class othername_controller extends controller
 			$deskripsi = '';
 			if(isset($_POST['deskripsi']));
 			$deskripsi = trim($_POST['deskripsi']);	
+			
+			$password = '';
+			if(isset($_POST['password']));
+			$password = trim($_POST['password']);	
 			
 			$validator = new Validator();
 			$validator->addRule('name', array('require'));
@@ -144,6 +148,18 @@ class othername_controller extends controller
 				);
 				$newdata = array('$set' => $data);
 				$stq->update(array("_id" => new MongoId($id)), $newdata);
+				
+				$sql = MysqlDB::init();
+				$data_sql = array(
+					'user' => 'vod-'.$name,
+					'userid' => $_SESSION['userid'],
+					'password' => $password, //
+					'host' => 'www.deboxs.com',
+					'Dir' => '/var/www/program/client-data/'.$_SESSION['userid'].'/other/'.$name,
+					'mongoid' => trim($data['_id'])
+				);
+				$sql->update('users', $data_sql);
+				
 				header("Location: ".'/othername/index?idother='.$id);
 				return;
 			}
@@ -154,9 +170,14 @@ class othername_controller extends controller
 		}
 		else
 		{
+			$sql_i = MysqlDB::init();
+			$sql_i->where('mongoid', $id);
+			$mabouts = $sql_i->getOne('users');
+			
 			$name = $sdu['name'];
 			$status = $sdu['status'];
 			$deskripsi = $sdu['deskripsi'];
+			$password = $mabouts['Password'];
 		}
 		
 		$link = '/othername/edit?id='.$id;
@@ -165,10 +186,11 @@ class othername_controller extends controller
 			'name' => $name,
 			'status' => $status,
 			'deskripsi' => $deskripsi,
+			'password' => $password,
 			'link' => $link,
 		);
 		
-		$content = $this->getView(DOCVIEW.'othername/add.php', $p);
+		$content = $this->getView(DOCVIEW.'othername/edit.php', $p);
 		
 		$a = array(
 			'content' => $content

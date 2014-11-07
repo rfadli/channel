@@ -20,8 +20,10 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             DataTables Advanced Tables
+                           </br>
+                           <a href="/vodname/edit?id=<?php echo $idvod; ?>" class="btn btn-default" type="button"><span class="glyphicon glyphicon-wrench"></span> Edit</a>
                         </div>
-                        <a href="/vodname/edit?id=<?php echo $idvod; ?>" class="btn btn-default" type="button">Edit</a>
+                        
                         <!-- /.panel-heading -->
                        </br>
                         <?php
@@ -31,13 +33,16 @@
 						
 						foreach ($dql as $rr) 
 						{
-							echo 'user id : '.$rr['userid'].'</br>'.'host : '.$rr['host'].'</br>'.'user : '.$rr['User'].'<br />'.'password : '.$rr['Password'];
+							echo '<ul class="list-group">';
+							echo '<li class="list-group-item list-group-item-success">'.'User Id : '.$rr['userid'].'</li>';
+							echo '<li class="list-group-item list-group-item-info">'.'User :  '.$rr['User'].'</li>';
+							echo '<li class="list-group-item list-group-item-warning">'.'Host :  '.$rr['host'].'</li>';
+							echo '<li class="list-group-item list-group-item-success">'.'Password :  '.$rr['Password'].'</li>';
 						}
-						?>
-						<?php
-						echo '<br />';
-						echo 'nama : '.$data['name'].'<br />';
-						echo 'deskripsi : '.$data['deskripsi'];
+						
+						echo '<li class="list-group-item list-group-item-info">'.'Name :  '.$data['name'].'</li>';
+						echo '<li class="list-group-item list-group-item-warning">'.'Deskripsi :  '.$data['deskripsi'].'</li>';
+						echo '</ul>';
 						?>
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -69,7 +74,8 @@
 											echo '<td>'.$dt->name.'</td>';
 											echo '<td>'.$dt->type.'</td>';
 											echo '<td>'.$dt->size.'</td>';
-											echo '<td>'.'</td>';
+											echo '<a href="#" link="/vodname/delete?id='.trim($dt['_id']).'" controller="Author" name="'.$dt['name'].'" title="Hapus" class="hapus"><i class="fa fa-times"></i></a></td>';
+											
 											echo '</tr>';
 											$no++;
 										}

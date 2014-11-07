@@ -23,8 +23,10 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             DataTables Advanced Tables
+                            </br>
+                            <a href="/vod/add" class="btn btn-default" type="button"><span class="glyphicon glyphicon-plus"></span>Add New</a>
                         </div>
-                        <a href="/vod/add" class="btn btn-default" type="button">add</a>
+                        
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -50,7 +52,7 @@
 											echo '<td>'.date('d/m/Y', $dk['time_created']).'</td>';
 											echo '<td>'.'<center>';
 											echo '<a href="/vod/edit?id='.$dk['_id'].'" class="fa fa-fw fa-pencil"></a>&nbsp';
-											echo '<a href="/vod/delete?id='.$dk['_id'].'" onclick="return confirm(\' Anda Yakin?\')" class="fa fa-fw fa-trash-o"></a>';
+											echo '<a href="#" link="/vod/delete?id='.trim($dk['_id']).'" controller="Vod" name="'.$dk['name'].'" title="Hapus" class="hapus"><i class="fa fa-times"></i></a>';
 											echo '</center>'.'</td>';
 											echo '</tr>';
 											$no++;

@@ -50,7 +50,7 @@
 											echo '<td>'.date('d/m/Y', $dat['time_created']).'</td>';
 											echo '<td>'.'<center>';
 											echo '<a href="/streaming/edit?id='.$dat['_id'].'" class="fa fa-fw fa-pencil"></a>&nbsp';
-											echo '<a href="/streaming/delete?id='.$dat['_id'].'" onclick="return confirm(\' Anda Yakin?\')" class="fa fa-fw fa-trash-o"></a>';
+											echo '<a href="#" link="/streaming/delete?id='.trim($dat['_id']).'" controller="Streaming" name="'.$dat['name'].'" title="Hapus" class="hapus"><i class="fa fa-times"></i></a>';
 											echo '</center>'.'</td>';
 											echo '</tr>';
 											$no++;

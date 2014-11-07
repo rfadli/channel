@@ -52,7 +52,7 @@
 											echo '<td>'.date('d/m/Y', $dat['time_created']).'</td>';
 											echo '<td>'.'<center>';
 											echo '<a href="/other/edit?id='.$dat['_id'].'" class="fa fa-fw fa-pencil"></a>&nbsp';
-											echo '<a href="/other/delete?id='.$dat['_id'].'" onclick="return confirm(\' Anda Yakin?\')" class="fa fa-fw fa-trash-o"></a>';
+											echo '<a href="#" link="/other/delete?id='.trim($dat['_id']).'" controller="Other" name="'.$dat['name'].'" title="Hapus" class="hapus"><i class="fa fa-times"></i></a>';
 											echo '</center>'.'</td>';
 											echo '</tr>';
 											$no++;

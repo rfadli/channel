@@ -64,6 +64,25 @@ class other_controller extends controller
 					'userid' => $_SESSION['userid'],  
 				);
 				$stg->insert($data);
+				
+				$sql = MysqlDB::init();
+				$data_sql = array(
+					'user' => 'other-'.$name,
+					'userid' => $_SESSION['userid'],
+					'password' => md5('123456789'), //
+					'host' => 'main.deboxs.com',
+					'Dir' => '/var/www/program/client-data/'.$_SESSION['userid'].'/other/'.$name,
+					'mongoid' => trim($data['_id'])
+				);
+				$sql->insert('users', $data_sql);
+				
+				$curl = new Curl();
+				$curl->get('http://www.deboxs.com/api/clientdata/createfolder', array(
+				    'userid' => $_SESSION['userid'],
+				    'typename' => 'other',
+				    'name' => $name
+				));
+				
 				header("Location: ".'/other/index/');
 				return;
 			}
