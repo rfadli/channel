@@ -202,11 +202,22 @@ class othername_controller extends controller
 
 	public function delete()
 	{
-		$id = $_GET['id'];
+		$idother = $_GET['idother'];
 		$db = Db::init();
-		$stq = $db->othername;
+		$stq = $db->other;
 		
-		$stq->remove(array('_id' => new MongoId($id)));
-		header("Location: ".'/other/index/');
+		$p = array(
+			"_id" => new MongoId($idother)
+		);
+		$data = $stq->findOne($p);
+		
+		$id = $_GET['id'];
+		$curl = new Curl();
+		$curl->get('http://www.deboxs.com/api/clientdata/removefolder', array(
+		    'userid' => $_SESSION['userid'],
+		    'typename' => 'other',
+		    'name' => $data['name']
+		));
+		header("Location: ".'/other/index?idother='.$id);
 	}
 }

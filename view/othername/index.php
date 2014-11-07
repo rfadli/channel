@@ -61,7 +61,7 @@
                                     	$curl = new Curl();
 										$curl->get('http://www.deboxs.com/api/clientdata/listfiles', array(
 										    'userid' => $_SESSION['userid'],
-										    'typename' => 'vod',
+										    'typename' => 'other',
 										    'name' => $data['name']
 										));
 										$no=1;
@@ -74,7 +74,7 @@
 											echo '<td>'.$dt->name.'</td>';
 											echo '<td>'.$dt->type.'</td>';
 											echo '<td>'.$dt->size.'</td>';
-											echo '<td>'.'<a href="#" link="/othername/delete?id='.trim($dat['_id']).'" controller="Other" name="'.$dat['name'].'" title="Hapus" class="hapus"><i class="fa fa-times"></i></a>'.'</td>';
+											echo '<td>'.'<a href="#" link="/othername/delete?idother='.trim($dat['_id']).'" controller="Other" name="'.$dt->name.'" title="Hapus" class="hapus"><i class="fa fa-times"></i></a>'.'</td>';
 											echo '</tr>';
 											$no++;
 										}
