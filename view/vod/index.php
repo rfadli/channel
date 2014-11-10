@@ -18,6 +18,11 @@
                 <!-- /.panel-body -->
             </div>
             
+            <form action='/vod/index/' class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
+            <input type="text" class="smallinput" name="search" value="<?php echo $search; ?>" />
+            <button class="radius3">Search</button>
+            </form>
+            
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">

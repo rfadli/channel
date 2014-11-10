@@ -122,7 +122,7 @@ class streamingname_controller extends controller
 				
 			$deskripsi = '';
 			if(isset($_POST['deskripsi']));
-			$deskripsi = trim($_POST['deskripsi']);	
+				$deskripsi = trim($_POST['deskripsi']);	
 			
 			$validator = new Validator();
 			$validator->addRule('name', array('require'));
@@ -186,6 +186,6 @@ class streamingname_controller extends controller
 		$str = $db->stream;
 		
 		$str->remove(array('_id' => new MongoId($id)));
-		header("Location: ".'/streaming/index/');
+		header("Location: ".'/streaming/index?id='.$id);
 	}
 }

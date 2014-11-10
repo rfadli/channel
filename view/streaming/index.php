@@ -17,14 +17,17 @@
                 </div>
                 <!-- /.panel-body -->
             </div>
-            
+            <form action='/streaming/index/' class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
+            <input type="text" class="smallinput" name="search" value="<?php echo $search; ?>" />
+            <button class="radius3">Search</button>
+            </form>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            DataTables Advanced Tables
+                            DataTables Advanced Tables<br />
+                            <a href="/streaming/add" class="btn btn-default" type="button"><span class="glyphicon glyphicon-plus"></span>Add New</a>
                         </div>
-                        <a href="/streaming/add" class="btn btn-default" type="button">add</a>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">

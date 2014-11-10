@@ -123,11 +123,11 @@ class vodname_controller extends controller
 				
 			$deskripsi = '';
 			if(isset($_POST['deskripsi']));
-			$deskripsi = trim($_POST['deskripsi']);
+				$deskripsi = trim($_POST['deskripsi']);
 			
 			$password = '';
 			if(isset($_POST['password']));
-			$password = trim($_POST['password']);	
+				$password = trim($_POST['password']);	
 			
 			$validator = new Validator();
 			$validator->addRule('name', array('require'));

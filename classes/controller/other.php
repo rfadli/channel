@@ -7,13 +7,29 @@ class other_controller extends controller
 		$db = Db::init();
 		$stg = $db->other;
 		
-		$p = array(
+		$search = '';
+		if(isset($_POST['search']))
+		{
+			$search = $_POST['search'];
+			
+			$p = array( 
+			'name' => new MongoRegex("/".$search."/i"),
 			"userid" => $_SESSION['userid']
-		);
-		$data = $stg->find($p);
+			);
+			$data = $stg->find($p);
+			//$data = $str->find(array('name' => new MongoRegex("/".$search."/i")));
+		}
+		else
+		{
+			$p = array(
+				"userid" => $_SESSION['userid']
+			);
+			$data = $stg->find($p);	
+		}
 		
 		$p = array(
-			'data' => $data
+			'data' => $data,
+			'search' => $search
 		);	
 		
 		$content = $this->getView(DOCVIEW.'other/index.php', $p);

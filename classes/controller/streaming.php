@@ -7,13 +7,28 @@ class streaming_controller extends controller
 		$db = Db::init();
 		$str = $db->channel;
 		
-		$p = array(
+		$search = '';
+		if(isset($_POST['search']))
+		{
+			$search = $_POST['search'];
+			
+			$p = array( 
+			'name' => new MongoRegex("/".$search."/i"),
 			"userid" => $_SESSION['userid']
-		);
-		$data = $str->find($p);
+			);
+			$data = $str->find($p);
+		}
+		else
+		{
+			$p = array(
+				"userid" => $_SESSION['userid']
+			);
+			$data = $str->find($p);	
+		}
 		
 		$p = array(
-			'data' => $data
+			'data' => $data,
+			'search' => $search
 		);
 		$content = $this->getView(DOCVIEW.'streaming/index.php', $p);
 		$p = array(

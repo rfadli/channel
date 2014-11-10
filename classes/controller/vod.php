@@ -7,13 +7,28 @@ class vod_controller extends controller
 		$db = Db::init();
 		$stt = $db->vod;
 		
-		$p = array(
+		$search = '';
+		if(isset($_POST['search']))
+		{
+			$search = $_POST['search'];
+			
+			$p = array( 
+			'name' => new MongoRegex("/".$search."/i"),
 			"userid" => $_SESSION['userid']
-		);
-		$data = $stt->find($p);
+			);
+			$data = $stt->find($p);
+		}
+		else
+		{
+			$p = array(
+				"userid" => $_SESSION['userid']
+			);
+			$data = $stt->find($p);	
+		}
 		
 		$p = array(
-			'data' => $data
+			'data' => $data,
+			'search' => $search
 		);
 		
 		$content = $this->getView(DOCVIEW.'vod/index.php', $p);

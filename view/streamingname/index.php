@@ -20,9 +20,9 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            DataTables Advanced Tables
+                            DataTables Advanced Tables<br />
+                            <a href="/streamingname/add?id=<?php echo $idchanel; ?>" class="btn btn-default" type="button"><span class="glyphicon glyphicon-plus"></span>Add New</a>
                         </div>
-                        <a href="/streamingname/add?id=<?php echo $idchanel; ?>" class="btn btn-default" type="button">add</a>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -48,7 +48,8 @@
 											echo '<td>'.date('d/m/Y', $dat['time_created']).'</td>';
 											echo '<td>'.'<center>';
 											echo '<a href="/streamingname/edit?id='.$dat['_id'].'" class="fa fa-fw fa-pencil"></a>&nbsp';
-											echo '<a href="/streamingname/delete?id='.$dat['_id'].'" onclick="return confirm(\' Anda Yakin?\')" class="fa fa-fw fa-trash-o"></a>';
+											echo '<a href="#" link="/streamingname/delete?id='.trim($dat['_id']).'" controller="Streaming Name" name="'.$dat['name'].'" title="Hapus" class="hapus"><i class="fa fa-times"></i></a>';
+											//echo '<a href="/streamingname/delete?id='.$dat['_id'].'" onclick="return confirm(\' Anda Yakin?\')" class="fa fa-fw fa-trash-o"></a>';
 											echo '</center>'.'</td>';
 											echo '</tr>';
 											$no++;
