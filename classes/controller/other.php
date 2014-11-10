@@ -10,7 +10,7 @@ class other_controller extends controller
 		$search = '';
 		if(isset($_POST['search']))
 		{
-			$search = $_POST['search'];
+			$search = trim($_POST['search']);
 			
 			$p = array( 
 			'name' => new MongoRegex("/".$search."/i"),
